@@ -1,0 +1,18 @@
+@font-face {font-family: "cx";
+  src: url('iconfont.eot?t=1502280281361'); /* IE9*/
+  src: url('iconfont.eot?t=1502280281361#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('iconfont.woff?t=1502280281361') format('woff'), /* chrome, firefox */
+  url('iconfont.ttf?t=1502280281361') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+  url('iconfont.svg?t=1502280281361#cx') format('svg'); /* iOS 4.1- */
+}
+
+.cx {
+  font-family:"cx" !important;
+  font-size:16px;
+  font-style:normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.cx-begin:before { content: "\e600"; }
+
