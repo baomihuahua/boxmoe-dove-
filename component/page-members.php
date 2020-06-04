@@ -92,7 +92,7 @@ if($_POST)
 		}
 		elseif(isset($_POST['paytype']) && $paytype==5)
 		{
-			$url=constant("erphpdown")."payment/boxmoepay.php?ice_money=".esc_sql($_POST['ice_money']);
+			$url=constant("erphpdown")."payment/f2fpay.php?ice_money=".esc_sql($_POST['ice_money']);
 		}
 		elseif(isset($_POST['paytype']) && $paytype==4)
 		{
