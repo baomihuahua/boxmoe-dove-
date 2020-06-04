@@ -191,7 +191,7 @@ class Options_Framework_Admin {
 					<div class="compile">					
 						<a href="https://www.boxmoe.com/431.html" target="_blank" rel="external nofollow" class="url themes-inf"><?php esc_attr_e( '主题日志', 'boxmoe' ); ?></a>
 						| 
-						主题免费，请勿上当受骗!! <a href="//shang.qq.com/wpa/qunwpa?idkey=59613f83e94de91a7a071c515a561e6aafe253875da926a8961a2d684aadab96" target="_blank" rel="external nofollow" class="url themes-inf"><?php esc_attr_e( '加入QQ群', 'boxmoe' ); ?></a>
+						主题免费，请勿上当受骗!! <a href="https://jq.qq.com/?_wv=1027&k=52f0L9P" target="_blank" rel="external nofollow" class="url themes-inf"><?php esc_attr_e( '加入QQ群', 'boxmoe' ); ?></a>
 					</div>
 				</h2>
 				<?php settings_errors( 'options-framework' ); ?>
