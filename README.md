@@ -18,5 +18,5 @@
 FontAwesome使用方法<br>
 //使用方式<br>
 打开https://d.boxmoe.com/html/FontAwesome.html 复制替换 <br>
-<code><i class="fa fa-cloud-download"></i></code>
+ `<i class="fa fa-cloud-download"></i>` 
 //fa-cloud-download 按对照表替换成你要的图标名<br>
