@@ -23,7 +23,7 @@
       </div>
 	  <script src="<?php echo boxmoe_load_style(); ?>/assets/js/vendor.js"></script>
 	  <script src="<?php echo boxmoe_load_style(); ?>/assets/js/boxmoe.js"></script>
-	  <script src="<?php echo boxmoe_load_style(); ?>/assets/js/comments.js"></script>	  
+	  <script src="<?php echo get_template_directory_uri(); ?>/assets/js/comments.js"></script>	  
 	  <?php wp_footer();?>
 	</body>
 	</html>
