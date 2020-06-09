@@ -42,9 +42,12 @@
             $(this).removeClass('open');
         }
     });
-    $(document).ready(function() {
-        $('#comment-author-info').hide();
-    });
+	var hide = document.getElementById('toggle-comment-author-info');
+    if(!hide) {  
+    }else{
+    $('#comment-author-info').hide();
+    }
+
     $("#doprofile").click(function(event) {
         var homeUrl = document.location.href.match(/http:\/\/([^\/]+)\//i)[0];
         var reg = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+((\.[a-zA-Z0-9_-]{2,3}){1,2})$/;
