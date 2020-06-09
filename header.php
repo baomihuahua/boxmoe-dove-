@@ -4,6 +4,8 @@
     <meta charset="<?php bloginfo( 'charset' ); ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title><?php echo bm_title(); ?></title>
+	<?php echo bm_keywords()?>
+	<?php echo bm_description()?>
 <?php if (boxmoe_com('favicon_src') ): ?>    <link rel="shortcut icon" href="<?php echo boxmoe_com('favicon_src')?>" /><?php endif; ?> 	
     <?php wp_head(); ?>
 	<?php if (boxmoe_com('diystyles') ): ?>    <link rel="stylesheet" href="<?php echo boxmoe_load_style(); ?>/assets/css/diystyle.css"><?php endif; ?>
