@@ -31,15 +31,9 @@ if( isset($_POST['md_token']) && ($_POST['md_token'] == $_SESSION['md_token'])) 
       }
     }
 	  
-    if ( isset( $_GET['r'] ) ) {
-      $redirect_to = $_GET['r'];
-      // Redirect to https if user wants ssl
-      if ( $secure_cookie && false !== strpos($redirect_to, 'wp-admin') )
-        $redirect_to = preg_replace('|^http://|', 'https://', $redirect_to);
-    }
-    else {
-      $redirect_to = admin_url();
-    }
+
+      $redirect_to = boxmoe_com('users_page');
+
 	
     if ( !$secure_cookie && is_ssl() && force_ssl_login() && !force_ssl_admin() && ( 0 !== strpos($redirect_to, 'https') ) && ( 0 === strpos($redirect_to, 'http') ) )
       $secure_cookie = false;
@@ -112,7 +106,7 @@ if (!is_user_logged_in()) { get_header();?>
                     </label>
                   </div>
                   <div class="text-center"><input type="hidden" name="md_token" value="<?php echo $token; ?>" />
-				  <input type="hidden" name="redirect_to" value="<?php if(isset($_GET['r'])) echo $_GET['r']; ?>" />
+				  <input type="hidden" name="redirect_to" value="<?php echo $redirect_to; ?>" />
                     <button type="submit" class="btn btn-success my-4">登录账户</button>
                   </div>
                 </form>
