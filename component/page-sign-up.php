@@ -11,7 +11,7 @@ if (is_user_logged_in()){
 
 if( !empty($_POST['csyor_reg']) ) {
   $error = '';
-  $redirect_to = sanitize_user( $_REQUEST['redirect_to'] );
+  $redirect_to =  boxmoe_com('users_page');
   $sanitized_user_login = sanitize_user( $_POST['user_login'] );
   $user_website = sanitize_user( $_POST['website'] );
   $user_nickname = sanitize_user( $_POST['nickname'] );
@@ -66,23 +66,21 @@ if( !empty($_POST['csyor_reg']) ) {
       $error .= sprintf( '错误：无法完成您的注册请求... 请联系<a href=\"mailto:%s\">管理员</a>！</p>', get_option( 'admin_email' ) );
     }else if (!is_user_logged_in()) {
       //注册成功发送邮件通知用户
-      $to = $user_email;
+	  $from = get_option('admin_email');
+	  $headers = "$from\nContent-Type: text/html; charset=" . get_option('blog_charset') . "\n";
       $subject = '您在 [' . get_option("blogname") . '] 的注册已经成功';
-      $message = '<div style="background-color:#eef2fa; border:1px solid #d8e3e8; color:#111; padding:0 15px; -moz-border-radius:5px; -webkit-border-radius:5px; -khtml-border-radius:5px; border-radius:5px;">
-        <p>' . $user_nickname . ', 您好!</p>
-        <p>感谢您在 [' . get_option("blogname") . '] 注册用户~</p>
-        <p>你的注册信息如下:<br />
-        账号：'. $sanitized_user_login . '<br />
-        邮箱：'. $user_email . '<br />
-        密码：'. $_POST['user_pass'] . '<br />
-        </p>
-        <p>欢迎光临 <a href="'.get_option('home').'">' . get_option('blogname') . '</a>。</p>
-	<p>(此郵件由系統自動發出, 請勿回覆.)</p>
-	</div>';
-      $from = "From: \"" . get_option('blogname') . "\" <$wp_email>";
-      $headers = "$from\nContent-Type: text/html; charset=" . get_option('blog_charset') . "\n";
-      wp_mail( $to, $subject, $message, $headers );
-			
+	  $msg = '<table style="width:50%;height:100%;margin:auto;"><tbody><tr><td style="background:#fafafa url()">
+<div style="border-radius: 10px 10px 10px 10px;font-size:13px;color: #555555;width:100%;font-family:"Century Gothic","Trebuchet MS","Hiragino Sans GB",微软雅黑,"Microsoft Yahei",Tahoma,Helvetica,Arial,"SimSun",sans-serif;margin:50px auto;border:1px solid #eee;max-width:100%;background: #ffffff repeating-linear-gradient(-45deg,#fff,#fff 1.125rem,transparent 1.125rem,transparent 2.25rem);box-shadow: 0 1px 5px rgba(0, 0, 0, 0.15);">
+<div style="width:100%;background:#49BDAD;color:#ffffff;border-radius: 10px 10px 0 0;background-image: -moz-linear-gradient(0deg, rgb(67, 198, 184), rgb(255, 209, 244));background-image: -webkit-linear-gradient(0deg, rgb(67, 198, 184), rgb(255, 209, 244));height: 66px;">
+<p style="font-size:15px;word-break:break-all;padding: 23px 32px;margin:0;background-color: hsla(0,0%,100%,.4);border-radius: 10px 10px 0 0;">您在<a style="text-decoration:none;color: #ffffff;" href="' . home_url(). '" rel="noopener" target="_blank"> [' . get_option('blogname') . '] </a> 的会员注册信息！</p>
+</div><div style="margin:40px 30px"><p>恭喜注册成功，请保存好您的会员信息</p><p style="background: #fafafa repeating-linear-gradient(-45deg,#fff,#fff 1.125rem,transparent 1.125rem,transparent 2.25rem);box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);margin:20px 0px;padding:15px;border-radius:5px;font-size:14px;color:#555555;">
+用户名: '.$sanitized_user_login.' <br>
+邮  箱: '.$user_email.' <br>
+密  码: '. $_POST['user_pass'] . '</p>
+<p>此邮件由 <a style="text-decoration:none; color:#12addb" href="' . home_url(). '" rel="noopener" target="_blank"> ' . get_option('blogname') . ' </a> 系统自动发送，请勿直接回复！</p>
+</div></div></td></tr></tbody></table>';
+			//发送邮件
+			wp_mail( $user_email, $subject, $msg, $headers );
       $user = get_userdatabylogin($sanitized_user_login);
       $user_id = $user->ID;
 			
@@ -90,7 +88,7 @@ if( !empty($_POST['csyor_reg']) ) {
       wp_set_current_user($user_id, $user_login);
       wp_set_auth_cookie($user_id);
       do_action('wp_login', $user_login);
-			
+	 // 登录后调整页面		
       wp_safe_redirect( $redirect_to );
     }
   }
