@@ -68,33 +68,33 @@
             <ul class="list-unstyled list-inline wow bounceInUp animated">
 			<?php if(boxmoe_com('boxmoe_qq')){?>
               <li class="list-inline-item">
-                <a target="_blank" href="https://wpa.qq.com/msgrd?v=3&amp;uin=<?php echo boxmoe_com('boxmoe_qq');?>&amp;site=qq&amp;menu=yes">
+                <a target="_blank" href="https://wpa.qq.com/msgrd?v=3&amp;uin=<?php echo boxmoe_com('boxmoe_qq');?>&amp;site=qq&amp;menu=yes" data-toggle="tooltip" data-placement="top"  data-original-title="点击联系我QQ:<?php echo boxmoe_com('boxmoe_qq');?>">
                   <i class="fa fa-qq"></i>
                 </a>
               </li>
 			  <?php } ?><?php if(boxmoe_com('boxmoe_wechat')){?>
               <li class="list-inline-item">
-                <a  href="index.html#">
+                <a  href="<?php echo boxmoe_com('boxmoe_wechat');?>" data-fancybox="images" class="fancybox" data-fancybox-group="button"  data-toggle="tooltip" data-placement="top"  data-original-title="点击打开二维码扫一扫加好友">
                   <i class="fa fa-weixin"></i>
                   </i>
                 </a>
               </li>
 			  <?php } ?><?php if(boxmoe_com('boxmoe_weibo')){?>
               <li class="list-inline-item">
-                <a target="_blank" href="<?php echo boxmoe_com('boxmoe_weibo');?>">
+                <a target="_blank" href="<?php echo boxmoe_com('boxmoe_weibo');?>" data-toggle="tooltip" data-placement="top"  data-original-title="欢迎关注我的微博">
                   <i class="fa fa-weibo"></i>
                 </a>
               </li>
 			   <?php } ?><?php if(boxmoe_com('boxmoe_github')){?>
               <li class="list-inline-item">
-                <a target="_blank" href="<?php echo boxmoe_com('boxmoe_github');?>">
+                <a target="_blank" href="<?php echo boxmoe_com('boxmoe_github');?>" data-toggle="tooltip" data-placement="top"  data-original-title="记得帮我点Star哦！">
                   <i class="fa fa-github"></i>
                 </a>
               </li>
 			  <?php } ?>
 			  <?php if(boxmoe_com('boxmoe_mail')){?>
 			  <li class="list-inline-item">
-                <a target="_blank" href="//mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=<?php echo boxmoe_com('boxmoe_mail');?>">
+                <a target="_blank" href="//mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=<?php echo boxmoe_com('boxmoe_mail');?>" data-toggle="tooltip" data-placement="top"  data-original-title="有问题发邮件<?php echo boxmoe_com('boxmoe_mail');?>">
                   <i class="fa fa-envelope-o"></i>
                 </a>
               </li>
