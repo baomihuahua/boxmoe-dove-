@@ -1,4 +1,14 @@
 <?php
+function boxmoe_options_menu_filter($menu) {
+	$menu['mode'] = 'menu';
+	$menu['page_title'] = 'Boxmoe主题设置';
+	$menu['menu_title'] = 'Boxmoe主题设置';
+	$menu['menu_slug'] = 'boxmoe-options';
+
+	return $menu;
+
+}
+add_filter('optionsframework_menu', 'boxmoe_options_menu_filter');
 
 //自动给修改网站登陆页面logo
 function customize_login_logo(){         

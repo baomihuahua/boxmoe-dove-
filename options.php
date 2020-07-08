@@ -549,27 +549,41 @@ function optionsframework_options() {
 	 * ====================================================================================================
 	 */	
     $options[] = array(
-		'name' => __('友链设置(待开发)', 'boxmoe-com'),
-		'type' => 'heading');	
+		'name' => __('友链设置', 'boxmoe-com'), 
+		'type' => 'heading');	 
     
     	$options[] = array(
-		'name' => __('首页开启友链', 'boxmoe-com'),
+		'name' => __('全站底部开启友链', 'boxmoe-com'),
 		'id' => 'indexlinks',
 		'type' => "checkbox",
 		'std' => false,
 		'desc' => __('开启', 'boxmoe-com'),);
 	$options[] = array(
 		'name' => __('首页友情链接申请地址'),
-		'desc' => __('填写自己站点的友情链接申请地址', 'boxmoe-com'),
+		'desc' => __('填写自己站点的友情链接申请地址（留空则不会链接过去）', 'boxmoe-com'),
 		'id' => 'yqlinks',
 		'std' => 'https://boxmoe.com',
 		'type' => 'text');	
 	$options[] = array(
-		'name' => __('首页友情链接命名'),
+		'name' => __('友情链接标题命名'),
 		'desc' => __('自己想怎么取就怎么取', 'boxmoe-com'),
 		'id' => 'yqlinksname',
 		'std' => '友情链接',
-		'type' => 'text');	
+		'type' => 'text');
+	$options[] = array(
+		'name' => __('自定义友情链接', 'boxmoe-com'),
+		'id' => 'diylinks_open',
+		'type' => "checkbox",
+		'std' => false,
+		'desc' => __('开启（开启后wp的友情链接失效，只显示下方输入的自定义链接）', 'boxmoe-com'),);
+	$options[] = array(
+		'name' => __('自定义友情链接', 'boxmoe-com'),
+		'id' => 'diylinks_con',
+		'std' => '<li><i class="fa fa-link"></i><a href="https://www.boxmoe.com/" target="_blank">盒子萌</a></li>',
+		'desc' => __('模板在上面了，复制粘贴一行一个自己改就好了', 'boxmoe-com'),
+		'settings' => array('rows' => 3),
+		'type' => 'textarea');	
+
 	/* 
 	 * SMTP发件
 	 * ====================================================================================================

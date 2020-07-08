@@ -71,6 +71,8 @@ input[type='radio']:checked:after {background:var(--active-inner);-webkit-transf
 .boxmoe-opt-header h2 .compile a {color:#ff0000;}
 .boxmoe-opt-header h2 .compile a:hover {color:#c50ac8;}
 .boxmoe-opt-main {background:#fff;border-color:#80bdff;}
+.boxmoe-button {padding: 5px 10px;color:white;border-radius:3px;border-width:0;margin:0;outline:none;font-size:14px;text-align:center;cursor:pointer;background: -webkit-gradient(linear,left top,right top,from(#9c51ff),to(#816bff));background: -webkit-linear-gradient(90deg,#9c51ff,#816bff);background: linear-gradient(90deg,#9c51ff,#816bff);}
+.boxmoe-button:hover{box-shadow: 1px 1px 5px #a5a6e6;}
 @media (max-width:767px) {body {word-wrap:break-word;-webkit-hyphens:auto;-ms-hyphens:auto;-moz-hyphens:auto;hyphens:auto;}
 }
 a,.uk-link {color:#3690cf;text-decoration:none;cursor:pointer;}

@@ -4,7 +4,28 @@
  */
 
 jQuery(document).ready(function($) {
-
+$('#versionss').click(function(){
+	$("#versionss").val("检测版本中...");	
+         $.ajax({
+             type: "GET", 
+             url: "https://www.boxmoe.com/api/boxmoe-dove.txt", 
+             data: {}, 
+             dataType: "json", 
+             success: function(result){ 
+             var dataObj = result,
+			 con = "";
+			 $.each(dataObj, function(index, item){
+             con += "<span class=\"boxmoe-button\">主题名："+item.name+" | ";
+			 con += "最新版本号："+item.version+" | ";
+			 con += "更新日期："+item.update+" | ";
+			 con += "更新链接：<a href='"+item.updateto+"'>点击访问</a></span>";	
+             });
+             console.log(con);
+			 $("#showing").html(con);
+			 $('#versionss').remove();
+              }
+         });
+    });
 	// Loads the color pickers
 	$('.of-color').wpColorPicker();
 

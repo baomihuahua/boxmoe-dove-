@@ -47,7 +47,12 @@
     }else{
     $('#comment-author-info').hide();
     }
-
+	/* ---------------------------------------------- /*
+    * 导航下拉框鼠标放上去自动打开，需要的话直接去掉下面两行注释
+    /* ---------------------------------------------- */
+    //$(".dropdown").mouseover(function(){$(".dropdown-menu").addClass("show");});
+	//$(".dropdown").mouseout(function(){$(".dropdown-menu").removeClass("show");});
+    /* ---------------------------------------------- */	
     $("#doprofile").click(function(event) {
         var homeUrl = document.location.href.match(/http:\/\/([^\/]+)\//i)[0];
         var reg = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+((\.[a-zA-Z0-9_-]{2,3}){1,2})$/;
@@ -86,7 +91,6 @@
             });
         }
     });
-
     $("#dopassword").click(function() {
         var homeUrl = document.location.href.match(/http:\/\/([^\/]+)\//i)[0];
         if ($("#mm_pass_new").val().trim().length == 0) {

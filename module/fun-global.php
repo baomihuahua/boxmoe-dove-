@@ -12,8 +12,9 @@ return $styleurlload;
 
 
 function boxmoe_enqueue_scripts() {
-    wp_enqueue_style('themes-style',boxmoe_load_style() . '/assets/css/themes.min.css',[], 'dove1.1');
-	wp_enqueue_style('style-css',boxmoe_load_style() . '/assets/css/style.css',[], 'dove1.1');
+	$theme_version = wp_get_theme()->get( 'Version' );
+    wp_enqueue_style('themes-style',boxmoe_load_style() . '/assets/css/themes.min.css',[], $theme_version);
+	wp_enqueue_style('style-css',boxmoe_load_style() . '/assets/css/style.css',[], $theme_version);
 }
 add_action( 'wp_enqueue_scripts', 'boxmoe_enqueue_scripts' );
 
@@ -155,18 +156,28 @@ function get_the_link_items($id = null){
 }
 return $output;
 }
-
-
-
+function get_yqlinks_index(){
+if (boxmoe_com('yqlinks')){
+	$result='<a href="'.boxmoe_com('yqlinks').'" class="footeer_linkss" target="_blank" title="点击进入申请友情链接"><span>'.boxmoe_com('yqlinksname').'</span></a>'	;	
+		}else {
+			$result='<span>'.boxmoe_com('yqlinksname').'</span>';
+			}
+return $result;			
+}
 function get_the_link_items_index($id = null){
 	$bookmarks = get_bookmarks('orderby=date&category=' . $id);
     $output    = '';
     if (!empty($bookmarks)) {
-        $output .= '<div class="container wow fadeInUp animated"><div class="row"><div class="col-lg-12 col-md-12"><div class="card mt40"><div class="card-body"><a href="'.boxmoe_com('yqlinks').'" class="btn btn-danger btn-sm justify-content-center" target="_blank" data-toggle="tooltip" data-original-title="点击进入申请友情链接"><span>'.boxmoe_com('yqlinksname').'</span><span class="badge badge-white">' . count($bookmarks) . '</span></a>';
-        foreach ($bookmarks as $bookmark) {
-            $output .= '<a href="' . $bookmark->link_url . '" class="badge badge-secondary" style="margin-right: 15px;" target="_blank">' . $bookmark->link_name . '</a>';	
+			
+        $output .= '<section class="section"><div class="container"><div class="section-head ">' .get_yqlinks_index(). '   </div><div class="row"> <div class="col-md-12"> <ul class="footeer_links">';
+        if (boxmoe_com('diylinks_open')){
+			$output .= 	boxmoe_com('diylinks_con');
+			}else {
+		foreach ($bookmarks as $bookmark) {					
+            $output .= '<li><i class="fa fa-link" ></i><a href="' . $bookmark->link_url . '"  target="_blank">' . $bookmark->link_name . '</a></li>';	
         }
-        $output .= '</div></div></div></div></div>';
+		}
+        $output .= '</ul></div></div></div> </section>';
     }
     return $output;
 }
@@ -174,9 +185,6 @@ function get_the_link_items_index($id = null){
 function get_link_items(){
 	$bookmarks = get_bookmarks('orderby=date&category=' . $id);
     $linkcats = get_terms('link_category');
-	 $output .= '<div class="btn btn-success col-md-12 ml-auto mr-auto ">
-  博主与以下 <span class="badge badge-danger">' . count($bookmarks) . '</span> 位大佬存在 <span class="badge badge-default">PY</span> 排名不分先后
-</div>';
     if (!empty($linkcats)) {
         foreach ($linkcats as $linkcat) {
             $result .= '<div class="link-title wow rollIn">'.$linkcat->name.'</div>';

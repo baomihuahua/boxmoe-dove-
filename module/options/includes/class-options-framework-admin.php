@@ -109,23 +109,34 @@ class Options_Framework_Admin {
      * @since 1.7.0
      */
 	function add_custom_options_page() {
+	$menu = $this->menu_settings();
 
-		$menu = $this->menu_settings();
+	switch ($menu['mode']) {
 
-		// If you want a top level menu, see this Gist:
-		// https://gist.github.com/devinsays/884d6abe92857a329d99
-
-		// Code removed because it conflicts with .org theme check.
-
-		$this->options_screen = add_theme_page(
-            $menu['page_title'],
-            $menu['menu_title'],
-            $menu['capability'],
-            $menu['menu_slug'],
-            array( $this, 'options_page' )
-        );
-
+		case 'menu':
+		// http://codex.wordpress.org/Function_Reference/add_menu_page
+			$this->options_screen = add_menu_page(
+				$menu['page_title'],
+				$menu['menu_title'],
+				$menu['capability'],
+				$menu['menu_slug'],
+				array($this, 'options_page'),
+				$menu['icon_url'],
+				$menu['position']
+			);
+			break;
+		default:
+		// http://codex.wordpress.org/Function_Reference/add_submenu_page
+			$this->options_screen = add_submenu_page(
+				$menu['parent_slug'],
+				$menu['page_title'],
+				$menu['menu_title'],
+				$menu['capability'],
+				$menu['menu_slug'],
+				array($this, 'options_page'));
+			break;   
 	}
+}
 
 	/**
      * Loads the required stylesheets
@@ -181,6 +192,7 @@ class Options_Framework_Admin {
 	 *
      * @since 1.7.0
      */
+
 	 function options_page() { ?>
 
 		<div id="optionsframework-wrap" class="wrap">
@@ -192,6 +204,9 @@ class Options_Framework_Admin {
 						<a href="https://www.boxmoe.com/431.html" target="_blank" rel="external nofollow" class="url themes-inf"><?php esc_attr_e( '主题日志', 'boxmoe' ); ?></a>
 						| 
 						主题免费，请勿上当受骗!! <a href="https://jq.qq.com/?_wv=1027&k=52f0L9P" target="_blank" rel="external nofollow" class="url themes-inf"><?php esc_attr_e( '加入QQ群', 'boxmoe' ); ?></a>
+						<br> <input type="button" class="boxmoe-button" value="检测最新版本" id="versionss"><div id="showing" ></div>
+
+
 					</div>
 				</h2>
 				<?php settings_errors( 'options-framework' ); ?>
@@ -213,8 +228,8 @@ class Options_Framework_Admin {
 							<?php Options_Framework_Interface::optionsframework_fields(); /* Settings */ ?>
 							<div class="clear"></div>
 							<div id="optionsframework-submit">
-								<input type="submit" class="button-primary" name="update" value="<?php esc_attr_e( '保存设置', 'boxmoe' ); ?>" />
-								<input type="submit" class="reset-button button-secondary" name="reset" value="<?php esc_attr_e( '恢复出厂设置', 'boxmoe' ); ?>" onclick="return confirm( '<?php print esc_js( __( '提示：点击确定，你自己在主题设置的数据将丢失，恢复到主题初始设置！', 'boxmoe' ) ); ?>' );" />
+								<input type="submit" class="boxmoe-button" style="float: left;" name="update" value="<?php esc_attr_e( '保存设置', 'boxmoe' ); ?>" />
+								<input type="submit" class="boxmoe-button" name="reset" value="<?php esc_attr_e( '恢复出厂设置', 'boxmoe' ); ?>" onclick="return confirm( '<?php print esc_js( __( '提示：点击确定，你自己在主题设置的数据将丢失，恢复到主题初始设置！', 'boxmoe' ) ); ?>' );" />
 								<div class="clear"></div>
 							</div>
 

@@ -137,7 +137,52 @@ function lightbox_gall_replace ($content) {
 }
 
 
-
+//文章密码保护
+function password_protected_post($atts, $content=null){
+    extract(shortcode_atts(array('key'=>null), $atts));
+    if(isset($_POST['password_key']) && $_POST['password_key']==$key){
+        return '
+		    <div class="alert alert-default" role="alert"><strong>温馨提示！</strong>以下是密码保护的内容！</div> 
+			<div class="password_protected_post_content">'.$content.'</div>
+		';
+    }elseif(isset($_POST['password_key']) && $_POST['password_key']!=$key){
+        return '
+			<script>
+				alert("密码错误，请仔细核对密码后重试！！！");
+				window.location.href="'.get_permalink().'";
+			</script>
+		';
+	
+	}else{
+        return '
+		    <div class="alert alert-default" role="alert"><strong>注意！</strong>以下部分内容需要输入密码后才能查看！</div> 
+		    <div class="row justify-content-center align-items-center">
+            <div class="col-md-6">		
+			<form class="mt20" action="'.get_permalink().'" method="post">
+			<div class="input-group mb-3">
+            <input type="password" id="password_key" name="password_key" class="form-control" placeholder="请输入密码查看隐藏内容" aria-label="请输入密码查看隐藏内容" aria-describedby="button-password_key">
+            <div class="input-group-append">
+            <button class="btn btn-outline-primary" type="submit" id="button-password_key">确  定</button>
+            </div>
+            </div>
+			</form>
+			</div>
+			</div>
+		';
+    }
+}
+add_shortcode('pwd_protected_post','password_protected_post');
+// 输入密码查看文章内容快捷按钮
+function appthemes_add_pwd_protected_post() {
+	if (wp_script_is('quicktags')){
+?>
+    <script type="text/javascript">
+        QTags.addButton( 'pwd_protected_post', '文章密码保护', '[pwd_protected_post key="保护密码"]','[/pwd_protected_post]' );
+    </script>
+<?php
+    } 
+}
+add_action('admin_print_footer_scripts', 'appthemes_add_pwd_protected_post' );
 
 //会员查看内容
 function login_to_read($atts, $content=null) {

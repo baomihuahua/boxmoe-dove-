@@ -158,7 +158,7 @@ add_filter( 'get_avatar', 'boxmoe_get_avatar', 10, 3 );
 function my_quicktags(){
 	wp_enqueue_script(
 		'my_quicktags',
-		get_stylesheet_directory_uri().'/assets/js/quicktags.js',
+		boxmoe_load_style().'/assets/js/quicktags.js',
 		array('quicktags')
 	);
 }
