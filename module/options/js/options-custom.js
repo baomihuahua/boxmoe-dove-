@@ -18,7 +18,7 @@ $('#versionss').click(function(){
              con += "<span class=\"boxmoe-button\">主题名："+item.name+" | ";
 			 con += "最新版本号："+item.version+" | ";
 			 con += "更新日期："+item.update+" | ";
-			 con += "更新链接：<a href='"+item.updateto+"'>点击访问</a></span>";	
+			 con += "更新链接：<a href='"+item.updateto+"' target='_blank'>点击访问</a></span>";	
              });
              console.log(con);
 			 $("#showing").html(con);
