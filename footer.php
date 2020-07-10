@@ -1,4 +1,5 @@
-      <footer class="footer section">        
+<?php echo get_the_link_items_index() ;?>	  
+ <footer class="footer section">        
 	  <div class="container">          
 	  <hr class="hr-icon">  
 <?php echo boxmoe_com('footer_seo') ;?>	  
