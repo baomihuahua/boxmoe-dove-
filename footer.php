@@ -1,4 +1,4 @@
-<?php echo get_the_link_items_index() ;?>	  
+<?php if (boxmoe_com('indexlinks')){ echo get_the_link_items_index();}?>	  
  <footer class="footer section">        
 	  <div class="container">          
 	  <hr class="hr-icon">  
